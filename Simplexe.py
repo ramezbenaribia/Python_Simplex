@@ -64,28 +64,29 @@ while (len((np.where(result > 0))[0]) > 0):
     print("pivot : ", matrice[y, x])
 
 # changer la variable sortante par la variable entrante
-    index = np.where(result == max(result))
-    index = index[0][0]
-    coeff_v_b[y] = Cj[index]
+
+    coeff_v_b[y] = Cj[x]
 
 # Changer la matrice et etablir la méthode de pivot de  Gauss
     matrice[y] = matrice[y] / matrice[y][x]
 
-    if (y == 1):
-        matrice[0] = matrice[0] - matrice[0][x] * matrice[y]
-        if (matrice[0, -1] < 0):
-            matrice[0] = matrice[0] * (-1)
+    # if (y == 1):
+    #     matrice[0] = matrice[0] - matrice[0][x] * matrice[y]
+    #     if (matrice[0, -1] < 0):
+    #         matrice[0] = matrice[0] * (-1)
 
-    for i in range(y):
-        matrice[i] = matrice[i] - matrice[i][x] * matrice[y]
-        if (matrice[i, -1] < 0):
-            matrice[i] = matrice[i] * (-1)
+    for i in range(len(coeff_v_b)):
+        if (i != y):
+            matrice[i] = matrice[i] - matrice[i][x] * matrice[y]
+            if (matrice[i, -1] < 0):
+                matrice[i] = matrice[i] * (-1)
 
-    for i in range(len(coeff_v_b)-y-1):
-        j = y+i+1
-        matrice[j] = matrice[j] - matrice[j][x] * matrice[y]
-        if (matrice[j, -1] < 0):
-            matrice[j] = matrice[j] * (-1)
+    # for i in range(len(coeff_v_b)-y-1):
+    #     j = y+i+1
+    #     matrice[j] = matrice[j] - matrice[j][x] * matrice[y]
+    #     if (matrice[j, -1] < 0):
+    #         matrice[j] = matrice[j] * (-1)
+
 
 # Changer Zj
 
